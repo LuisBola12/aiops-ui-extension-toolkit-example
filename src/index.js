@@ -1,6 +1,9 @@
 /**
  * © Copyright IBM Corp. 2022, 2025
  * SPDX-License-Identifier: Apache-2.0
+ *
+ * Lab test toolkit — mirrors customer TS023027787 code with all fixes applied.
+ * Source: customer src-index.js + panel files created by support engineer.
  */
 
 import getReactRenderer from '@ibm/akora-renderer-react';
@@ -8,6 +11,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 const ReactRenderer = getReactRenderer(React, ReactDOM);
+
+// ── Standard toolkit panels (unchanged from IBM default) ───────────────────
 
 export const SimpleSamplePanel = {
   renderer: ReactRenderer,
@@ -62,11 +67,13 @@ export const MonitorBoxes = {
   renderer: ReactRenderer,
   state: {
     component: () => import('./panels/monitor-boxes.panel'),
-    stateToPropMapper: (state) => (
-      {...state}
-    )
+    stateToPropMapper: (state) => ({ ...state })
   }
 };
+
+// ── Custom dashboard panels (customer additions — fixed) ───────────────────
+
+// ── Register all panels ────────────────────────────────────────────────────
 
 window.registerCustomPanel('hello-world', SimpleSamplePanel);
 window.registerCustomPanel('alerts-workflow', AlertsWorkflowPanel);
