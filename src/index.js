@@ -1,9 +1,6 @@
 /**
  * © Copyright IBM Corp. 2022, 2025
  * SPDX-License-Identifier: Apache-2.0
- *
- * Lab test toolkit — mirrors customer TS023027787 code with all fixes applied.
- * Source: customer src-index.js + panel files created by support engineer.
  */
 
 import getReactRenderer from '@ibm/akora-renderer-react';
@@ -12,7 +9,7 @@ import ReactDOM from 'react-dom/client';
 
 const ReactRenderer = getReactRenderer(React, ReactDOM);
 
-// ── Standard toolkit panels (unchanged from IBM default) ───────────────────
+// ── Standard toolkit panels ────────────────────────────────────────────────
 
 export const SimpleSamplePanel = {
   renderer: ReactRenderer,
@@ -71,7 +68,23 @@ export const MonitorBoxes = {
   }
 };
 
-// ── Custom dashboard panels (customer additions — fixed) ───────────────────
+// ── Custom dashboard panels (Customer additions) ───────────────────────────
+
+export const AiOpsDashboardPanel = {
+  renderer: ReactRenderer,
+  state: {
+    component: () => import('./panels/aiops-dashboard.panel'),
+    stateToPropMapper: (state) => ({ ...state })
+  }
+};
+
+export const AlertSummaryDashboardPanel = {
+  renderer: ReactRenderer,
+  state: {
+    component: () => import('./panels/alert-summary-dashboard.panel'),
+    stateToPropMapper: (state) => ({ ...state })
+  }
+};
 
 // ── Register all panels ────────────────────────────────────────────────────
 
@@ -83,3 +96,5 @@ window.registerCustomPanel('application-heatmap', ApplicationHeatmapPanel);
 window.registerCustomPanel('alerts-timeline', AlertsTimelinePanel);
 window.registerCustomPanel('incidents-pie-chart', IncidentsPieChart);
 window.registerCustomPanel('monitor-boxes', MonitorBoxes);
+window.registerCustomPanel('aiops-dashboard', AiOpsDashboardPanel);
+window.registerCustomPanel('alert-summary-dashboard', AlertSummaryDashboardPanel);

@@ -1,37 +1,26 @@
 {
-  "spec": {
-    "menuRoutes": [
-      {
-        "categoryTitle": "AI Operations",
-        "routes": [
-          "/aiops-dashboard",
-          "/alert-summary-dashboard"
-        ],
-        "type": "category"
-      }
-    ],
-    "routes": [
-      {
-        "path": "/aiops-dashboard",
-        "regions": {
-          "main": {
-            "bundlePath": "bundles/alerts-examples/files/alerts-examples-bundle.js",
-            "panelId": "aiops-dashboard"
-          }
-        },
-        "title": "AI Operations Dashboard"
-      },
-      {
-        "path": "/alert-summary-dashboard",
-        "regions": {
-          "main": {
-            "bundlePath": "bundles/alerts-examples/files/alerts-examples-bundle.js",
-            "panelId": "alert-summary-dashboard"
-          }
-        },
-        "title": "Alert Summary Dashboard"
-      }
-    ],
-    "frameSrcUrls": ""
-  }
+  "menuRoutes": [
+    {
+      "categoryTitle": "AI Operations",
+      "routes": [
+        "/aiops-dashboard",
+        "/alert-summary-dashboard"
+      ],
+      "type": "category"
+    }
+  ],
+  "routes": [
+    {
+      "path": "/aiops-dashboard",
+      "title": "AI Operations Dashboard",
+      "bundlePath": "bundles/alerts-examples/files/alerts-examples-bundle.js",
+      "panelId": "aiops-dashboard"
+    },
+    {
+      "path": "/alert-summary-dashboard",
+      "title": "Alert Summary Dashboard",
+      "bundlePath": "bundles/alerts-examples/files/alerts-examples-bundle.js",
+      "panelId": "alert-summary-dashboard"
+    }
+  ]
 }
