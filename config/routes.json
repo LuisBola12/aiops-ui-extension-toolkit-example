@@ -15,43 +15,27 @@
     "routes": [
       {
         "path": "/aiops-dashboard",
-        "regions": {
-          "left": {
-            "bundlePath": "{{BUNDLE_PATH}}",
-            "panelId": "aiops-dashboard"
-          }
-        },
-        "title": "AI Operations Dashboard"
+        "title": "AI Operations Dashboard",
+        "bundlePath": "{{BUNDLE_PATH}}",
+        "panelId": "aiops-dashboard"
       },
       {
         "path": "/alert-summary-dashboard",
-        "regions": {
-          "left": {
-            "bundlePath": "{{BUNDLE_PATH}}",
-            "panelId": "alert-summary-dashboard"
-          }
-        },
-        "title": "Alert Summary Dashboard"
+        "title": "Alert Summary Dashboard",
+        "bundlePath": "{{BUNDLE_PATH}}",
+        "panelId": "alert-summary-dashboard"
       },
       {
         "path": "/runbook-executions",
-        "regions": {
-          "left": {
-            "bundlePath": "{{BUNDLE_PATH}}",
-            "panelId": "runbook-executions"
-          }
-        },
-        "title": "Runbook Executions"
+        "title": "Runbook Executions",
+        "bundlePath": "{{BUNDLE_PATH}}",
+        "panelId": "runbook-executions"
       },
       {
         "path": "/observer-resources",
-        "regions": {
-          "left": {
-            "bundlePath": "{{BUNDLE_PATH}}",
-            "panelId": "observer-resources"
-          }
-        },
-        "title": "Observer Resource Discovery"
+        "title": "Observer Resource Discovery",
+        "bundlePath": "{{BUNDLE_PATH}}",
+        "panelId": "observer-resources"
       }
     ],
     "frameSrcUrls": ""
