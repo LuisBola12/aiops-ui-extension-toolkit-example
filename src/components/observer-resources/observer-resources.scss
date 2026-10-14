@@ -1,0 +1,121 @@
+.observer-resources {
+  padding: 1.5rem;
+  background: var(--cds-layer-01, #ffffff);
+  color: var(--cds-text-primary, #161616);
+
+  &__heading-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  &__heading {
+    font-size: 1.75rem;
+    font-weight: 600;
+  }
+
+  &__heading-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__last-refresh {
+    font-size: 0.8rem;
+    color: var(--cds-text-secondary, #525252);
+  }
+
+  &__kpi-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  &__kpi-card {
+    padding: 1rem;
+    border: 1px solid var(--cds-border-subtle, #e0e0e0);
+    border-left: 4px solid #0f62fe;
+    background: var(--cds-layer-02, #f4f4f4);
+    border-radius: 4px;
+  }
+
+  &__kpi-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+    word-break: break-word;
+  }
+
+  &__kpi-label {
+    font-size: 0.875rem;
+    color: var(--cds-text-secondary, #525252);
+    margin-top: 0.25rem;
+  }
+
+  &__section {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    border: 1px solid var(--cds-border-subtle, #e0e0e0);
+    background: var(--cds-layer-01, #ffffff);
+    border-radius: 4px;
+  }
+
+  &__section-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  &__empty {
+    color: var(--cds-text-secondary, #525252);
+    font-style: italic;
+  }
+
+  &__table-wrapper {
+    overflow-x: auto;
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+
+    th,
+    td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--cds-border-subtle, #e0e0e0);
+    }
+
+    th {
+      font-weight: 600;
+      background: var(--cds-layer-02, #f4f4f4);
+    }
+
+    tbody tr:hover {
+      background: var(--cds-layer-hover, #e5e5e5);
+    }
+  }
+
+  &__cell-name {
+    font-weight: 500;
+    max-width: 260px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__cell-id {
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: var(--cds-text-secondary, #525252);
+    max-width: 280px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

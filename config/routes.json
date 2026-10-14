@@ -5,7 +5,9 @@
         "categoryTitle": "AI Operations",
         "routes": [
           "/aiops-dashboard",
-          "/alert-summary-dashboard"
+          "/alert-summary-dashboard",
+          "/runbook-executions",
+          "/observer-resources"
         ],
         "type": "category"
       }
@@ -30,6 +32,26 @@
           }
         },
         "title": "Alert Summary Dashboard"
+      },
+      {
+        "path": "/runbook-executions",
+        "regions": {
+          "left": {
+            "bundlePath": "bundles/alerts-examples/files/alerts-examples-bundle.js",
+            "panelId": "runbook-executions"
+          }
+        },
+        "title": "Runbook Executions"
+      },
+      {
+        "path": "/observer-resources",
+        "regions": {
+          "left": {
+            "bundlePath": "bundles/alerts-examples/files/alerts-examples-bundle.js",
+            "panelId": "observer-resources"
+          }
+        },
+        "title": "Observer Resource Discovery"
       }
     ],
     "frameSrcUrls": ""

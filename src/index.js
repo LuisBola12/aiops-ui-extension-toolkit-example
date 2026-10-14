@@ -86,6 +86,22 @@ export const AlertSummaryDashboardPanel = {
   }
 };
 
+export const RunbookExecutionsPanel = {
+  renderer: ReactRenderer,
+  state: {
+    component: () => import('./panels/runbook-executions.panel'),
+    stateToPropMapper: (state) => ({ ...state })
+  }
+};
+
+export const ObserverResourcesPanel = {
+  renderer: ReactRenderer,
+  state: {
+    component: () => import('./panels/observer-resources.panel'),
+    stateToPropMapper: (state) => ({ ...state })
+  }
+};
+
 // ── Register all panels ────────────────────────────────────────────────────
 
 window.registerCustomPanel('hello-world', SimpleSamplePanel);
@@ -98,3 +114,5 @@ window.registerCustomPanel('incidents-pie-chart', IncidentsPieChart);
 window.registerCustomPanel('monitor-boxes', MonitorBoxes);
 window.registerCustomPanel('aiops-dashboard', AiOpsDashboardPanel);
 window.registerCustomPanel('alert-summary-dashboard', AlertSummaryDashboardPanel);
+window.registerCustomPanel('runbook-executions', RunbookExecutionsPanel);
+window.registerCustomPanel('observer-resources', ObserverResourcesPanel);
