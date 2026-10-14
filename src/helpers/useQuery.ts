@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 /**
  * The following queries are available:
@@ -86,17 +86,27 @@ export function useQuery<T>(query: string, options: object) {
   const [loading, setLoading] = useState<boolean>();
   const [error, setError] = useState<object>();
 
-  const refetch = (refetchOptions?: object) => {
+  // Keep a ref to the latest options so refetch always uses the current value
+  // without needing options in the useCallback dependency array.
+  const optionsRef = useRef(options);
+  optionsRef.current = options;
+
+  // Stable string key — only changes when the options values actually change.
+  // This prevents the infinite re-render loop caused by callers passing a new
+  // object literal on every render (new reference even when values are identical).
+  const optionsKey = useMemo(() => JSON.stringify(options), [options]);
+
+  const refetch = useCallback((refetchOptions?: object) => {
     setLoading(true);
-    window.akoraConfig.baseState.API.contentAnalyticsAPI[query]({ ...options, ...refetchOptions })
+    window.akoraConfig.baseState.API.contentAnalyticsAPI[query]({ ...optionsRef.current, ...refetchOptions })
       .then(setData)
       .catch(setError)
       .finally(() => setLoading(false));
-  };
+  }, [query]); // query is stable; options are read from the ref
 
   useEffect(() => {
     if (query) refetch();
-  }, [query, options]);
+  }, [query, optionsKey, refetch]); // optionsKey changes only when values change
 
   return {
     data,

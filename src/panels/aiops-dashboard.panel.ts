@@ -12,26 +12,32 @@ import AiOpsDashboard from '../components/aiops-dashboard/AiOpsDashboard';
 
 const TENANT_ID = 'cfd95b7e-3bc7-4006-a4a8-a73a79c71255';
 
+// Static options objects — defined outside the component so they are never
+// recreated, which prevents useQuery's useEffect from firing on every render.
+const ALERTS_QUERY_OPTIONS = {
+  tenantId: TENANT_ID,
+  columns: [
+    'severity', 'summary', 'resourceName', 'applicationName',
+    'senderName', 'firstOccurrenceTime', 'acknowledged',
+    'insights', 'owner', 'team'
+  ],
+  format: 'FULL'
+};
+
+const STORIES_QUERY_OPTIONS = {
+  tenantId: TENANT_ID
+};
+
+const ALERT_SUMMARY_OPTIONS = {
+  tenantId: TENANT_ID,
+  columns: ['severity'],
+  format: 'SUMMARY'
+};
+
 const AiOpsDashboardPanel = () => {
-  const alertsQuery = useQuery('getAlerts', {
-    tenantId: TENANT_ID,
-    columns: [
-      'severity', 'summary', 'resourceName', 'applicationName',
-      'senderName', 'firstOccurrenceTime', 'acknowledged',
-      'insights', 'owner', 'team'
-    ],
-    format: 'FULL'
-  });
-
-  const storiesQuery = useQuery('getStories', {
-    tenantId: TENANT_ID
-  });
-
-  const alertSummaryQuery = useQuery('getAlerts', {
-    tenantId: TENANT_ID,
-    columns: ['severity'],
-    format: 'SUMMARY'
-  });
+  const alertsQuery = useQuery('getAlerts', ALERTS_QUERY_OPTIONS);
+  const storiesQuery = useQuery('getStories', STORIES_QUERY_OPTIONS);
+  const alertSummaryQuery = useQuery('getAlerts', ALERT_SUMMARY_OPTIONS);
 
   return React.createElement(AiOpsDashboard, {
     alertsQuery,

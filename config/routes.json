@@ -17,7 +17,7 @@
         "path": "/aiops-dashboard",
         "regions": {
           "left": {
-            "bundlePath": "bundles/alerts-examples/files/alerts-examples-bundle.js",
+            "bundlePath": "{{BUNDLE_PATH}}",
             "panelId": "aiops-dashboard"
           }
         },
@@ -27,7 +27,7 @@
         "path": "/alert-summary-dashboard",
         "regions": {
           "left": {
-            "bundlePath": "bundles/alerts-examples/files/alerts-examples-bundle.js",
+            "bundlePath": "{{BUNDLE_PATH}}",
             "panelId": "alert-summary-dashboard"
           }
         },
@@ -37,7 +37,7 @@
         "path": "/runbook-executions",
         "regions": {
           "left": {
-            "bundlePath": "bundles/alerts-examples/files/alerts-examples-bundle.js",
+            "bundlePath": "{{BUNDLE_PATH}}",
             "panelId": "runbook-executions"
           }
         },
@@ -47,7 +47,7 @@
         "path": "/observer-resources",
         "regions": {
           "left": {
-            "bundlePath": "bundles/alerts-examples/files/alerts-examples-bundle.js",
+            "bundlePath": "{{BUNDLE_PATH}}",
             "panelId": "observer-resources"
           }
         },

@@ -10,20 +10,24 @@ import minimist from 'minimist';
 const defaultCr = 'aiopsuiextension-sample';
 const defaultNamespace = 'cp4aiops';
 
-const addExamples = (finalSpec, namespace, cr) => {
-  let newSpec = JSON.stringify(finalSpec);
+const addExamples = (routesFileContent, namespace, cr) => {
+  // routesFileContent has shape { spec: { menuRoutes, routes, ... } }
+  // When patching an existing CR we only need to send the spec portion.
+  // When creating we wrap with the full CR boilerplate.
+  let patchSpec = JSON.stringify({ spec: routesFileContent.spec });
   const getSpecChildProcess = spawn('oc', ['get', 'AIOpsUIExtension', cr, '-o', 'jsonpath={.spec}', '-n', namespace]);
   getSpecChildProcess.on('exit', (ret) => {
     const writeSpecChildProcess = !ret ?
-      spawn('oc', ['patch', 'AIOpsUIExtension', cr, '--type', 'merge', '-p', newSpec, '-n', namespace]) :
+      spawn('oc', ['patch', 'AIOpsUIExtension', cr, '--type', 'merge', '-p', patchSpec, '-n', namespace]) :
       spawn('oc', ['apply', '-f', '-', '-n', namespace]);
+    let newSpec = patchSpec;
     if (ret) {
       console.log('Creating examples...')
       newSpec = JSON.stringify({
         kind: 'AIOpsUIExtension',
         metadata: { name: cr },
         apiVersion: 'consoleui.aiops.ibm.com/v1',
-        ...finalSpec
+        spec: routesFileContent.spec
       });
       writeSpecChildProcess.stdin.setEncoding('utf8');
       writeSpecChildProcess.stdin.write(newSpec + '\n');
