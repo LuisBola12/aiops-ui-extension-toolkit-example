@@ -83,17 +83,18 @@ const ObserverResources: React.FC<ObserverResourcesProps> = ({
   lastRefreshed,
   onRefresh,
 }) => {
-  let title = 'Observer Resource Discovery';
-  try {
-    const { state, app } = useAkoraState();
-    if (app && state) {
-      const targetUrl = app.resolvePathExpression(state.path);
-      const stateForPath = app.getStateForPath(targetUrl);
-      if (stateForPath?.title) title = stateForPath.title;
+  const { state, app } = useAkoraState();
+  const title = (() => {
+    try {
+      if (app && state) {
+        const stateForPath = app.getStateForPath(app.resolvePathExpression(state.path));
+        if (stateForPath?.title) return stateForPath.title;
+      }
+    } catch {
+      // fall through to default
     }
-  } catch {
-    // keep fallback title
-  }
+    return 'Observer Resource Discovery';
+  })();
 
   // ---- derived KPIs -------------------------------------------------------
   const totalObservers = observers.length;

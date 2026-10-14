@@ -93,19 +93,18 @@ function makeFilterSeverityOptions(loading: boolean) {
 const AlertSummaryDashboard = (props: any) => {
   const { alertsQuery, alertSummaryQuery } = props;
 
-  let title = 'Alert Summary Dashboard';
-  try {
-    const { state, app } = useAkoraState();
-    if (app && state) {
-      const targetUrl = app.resolvePathExpression(state.path);
-      const stateForPath = app.getStateForPath(targetUrl);
-      if (stateForPath?.title) {
-        title = stateForPath.title;
+  const { state, app } = useAkoraState();
+  const title = (() => {
+    try {
+      if (app && state) {
+        const stateForPath = app.getStateForPath(app.resolvePathExpression(state.path));
+        if (stateForPath?.title) return stateForPath.title;
       }
+    } catch {
+      // fall through to default
     }
-  } catch {
-    // fall back to default title if Akora state is not yet ready
-  }
+    return 'Alert Summary Dashboard';
+  })();
 
   // ---- raw data from parent-supplied queries --------------------------------
   const alertRows: Array<{ fields: (string | null)[] }> =

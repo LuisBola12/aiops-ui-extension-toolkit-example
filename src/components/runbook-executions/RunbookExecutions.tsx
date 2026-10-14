@@ -107,17 +107,18 @@ const RunbookExecutions: React.FC<RunbookExecutionsProps> = ({
   error,
   onRefresh,
 }) => {
-  let title = 'Runbook Executions';
-  try {
-    const { state, app } = useAkoraState();
-    if (app && state) {
-      const targetUrl = app.resolvePathExpression(state.path);
-      const stateForPath = app.getStateForPath(targetUrl);
-      if (stateForPath?.title) title = stateForPath.title;
+  const { state, app } = useAkoraState();
+  const title = (() => {
+    try {
+      if (app && state) {
+        const stateForPath = app.getStateForPath(app.resolvePathExpression(state.path));
+        if (stateForPath?.title) return stateForPath.title;
+      }
+    } catch {
+      // fall through to default
     }
-  } catch {
-    // keep fallback title
-  }
+    return 'Runbook Executions';
+  })();
 
   // ---- derived KPIs -------------------------------------------------------
   const total = executions.length;
